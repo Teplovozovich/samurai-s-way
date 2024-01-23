@@ -1,0 +1,16 @@
+@import '/src/scss/main.module.scss';
+
+.dialogs {
+    display: flex;
+    padding: 0 0 0 40px;
+    gap: 10px;
+    background-color: $primary-color;
+    color: $text-color;
+    flex-grow: 1;
+    border-radius: $main-border-radius;
+    border: $line-color 1px solid;
+}
+
+.messages {
+    padding: 0 0 0 140px;
+}

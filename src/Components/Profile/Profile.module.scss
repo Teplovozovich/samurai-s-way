@@ -1,0 +1,9 @@
+@import "./../../scss/main.module.scss";
+
+.profile__wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: $secondary-color;
+    color: $text-color;
+}

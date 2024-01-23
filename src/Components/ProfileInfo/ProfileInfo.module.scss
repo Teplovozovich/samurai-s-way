@@ -1,0 +1,11 @@
+@import "./../../scss/main.module.scss";
+.profile__info {
+    display: flex;
+    flex-direction: column;
+
+    img {
+        height: 400px;
+        border-radius: $main-border-radius;
+    }
+}
+

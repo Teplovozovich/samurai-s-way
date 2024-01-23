@@ -1,0 +1,28 @@
+@import "./../../../../scss/main.module.scss";
+
+.post {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    padding: 0 0 0 15px;
+    
+}
+
+.like__btn {
+    display: flex;
+    padding: 3px 0 30px 0;
+}
+
+.img {
+    width: 60px;
+    height: 60px;
+}
+
+.post__wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 15px 0;
+    border: $line-color 1px solid;
+    border-radius: $main-border-radius;
+    background-color: $primary-color;
+}
