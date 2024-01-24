@@ -16,22 +16,13 @@ function App(props) {
       <Header />
       <div className="app__wrapper">
         <div className="maim__wrapper">
-          <NavPanel friends={props.state.navbar.friends} />
+          <NavPanel />
           <Routes>
-            <Route path="/news"
-              element={<News />} />
-            <Route path="/profile"
-              element={<Profile
-                store={props.store}
-                dispatch={props.dispatch}
-                posts={props.state.profilePage} />} />
-            <Route path="/dialogs/*"
-              element={<DialogsContainer
-                store={props.store} />} />
-            <Route path="/music"
-              element={<Music />} />
-            <Route path="/settings"
-              element={<Settings />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/dialogs/*" element={<DialogsContainer />} />
+            <Route path="/music" element={<Music />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </div>
       </div>

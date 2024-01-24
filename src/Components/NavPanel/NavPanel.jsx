@@ -4,11 +4,11 @@ import Friends from "./Friends/Friends";
 
 const NavPanel = (props) => {
 
-    let FriendElement = props.friends.map(data =>
-        <Friends
-         friend={data.name}
-         avatar={data.avatar}
-         />)
+    // let FriendElement = props.navbar.friends.map(data =>
+    //     <Friends
+    //      friend={data.name}
+    //      avatar={data.avatar}
+    //      />)
 
     return (
         <nav className={styles.nav__wrapper}>
@@ -30,7 +30,7 @@ const NavPanel = (props) => {
                 </div>
             </div>
             <div className={styles.friends}>
-                {FriendElement}
+                {/* {FriendElement} */}
             </div>
         </nav >
     )
