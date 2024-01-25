@@ -1,0 +1,13 @@
+@import '/src/scss/main.module.scss';
+
+.users {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 40px;
+    gap: 10px;
+    background-color: $primary-color;
+    color: $text-color;
+    flex-grow: 1;
+    border-radius: $main-border-radius;
+    border: $line-color 1px solid;
+}

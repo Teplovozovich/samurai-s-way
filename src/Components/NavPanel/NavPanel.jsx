@@ -26,6 +26,9 @@ const NavPanel = (props) => {
                     <NavLink to="/music" className={navData => navData.isActive ? styles.active : styles.item}>music</NavLink>
                 </div>
                 <div>
+                    <NavLink to="/users" className={navData => navData.isActive ? styles.active : styles.item}>users</NavLink>
+                </div>
+                <div>
                     <NavLink to="/settings" className={navData => navData.isActive ? styles.active : styles.item}>настройки</NavLink>
                 </div>
             </div>
