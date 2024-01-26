@@ -7,8 +7,8 @@ const User = (props) => {
             <span>{props.fullName}</span>
             <span>{props.status}</span>
             {props.isFollowed ?
-                <button onClick={() => { props.follow(props.id) }}>unfollowe</button> :
-                <button onClick={() => { props.unfollow(props.id) }}>followe</button>
+                <button onClick={() => { props.unfollow(props.id) }}>unfollowe</button> :
+                <button onClick={() => { props.follow(props.id) }}>follow</button>
             }
         </div>
     )
