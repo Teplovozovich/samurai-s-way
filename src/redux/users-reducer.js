@@ -1,14 +1,15 @@
 const FOLLOW = "FOLLOW"
 const UNFOLLOW = "UNFOLLOW"
 const SET_USERS = "SET-USERS"
+const SET_CURRENT_PAGE = "SET-CURRENT-PAGE"
+const SET_TOTAL_USER_COUNT = "SET_TOTAL_USER_COUNT"
 
 let initialState = {
-    users: [
-        { id: 1, isFollowed: true, fullName: "Naruto Uzumaki", status: "I'm aboba", location: { country: "Russia", city: "Tumen" } },
-        { id: 2, isFollowed: false, fullName: "Sakura Nara", status: "I'm aboba", location: { country: "Japan", city: "Surgut" } },
-        { id: 3, isFollowed: false, fullName: "Saske Uchiha", status: "I'm aboba", location: { country: "DodAs", city: "As" } },
-    ],
-    newPostText: "",
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 3,
+    isFetching: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -20,7 +21,7 @@ const usersReducer = (state = initialState, action) => {
                     if (data.id === action.userId) {
                         return {
                             ...data,
-                            isFollowed: true
+                            followed: true
                         }
                     } return data
                 })
@@ -34,7 +35,7 @@ const usersReducer = (state = initialState, action) => {
                     if (data.id === action.userId) {
                         return {
                             ...data,
-                            isFollowed: false
+                            followed: false
                         }
                     } return data
                 })
@@ -43,7 +44,19 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS: {
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
+            }
+        }
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state,
+                currentPage: action.currentPage,
+            }
+        }
+        case SET_TOTAL_USER_COUNT: {
+            return {
+                ...state,
+                totalUsersCount: action.totalUsersCount,
             }
         }
         default:
@@ -68,6 +81,18 @@ export const setUsersAC = (users) => {
     return {
         type: SET_USERS,
         users
+    }
+}
+export const setCurrentPageAC = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage
+    }
+}
+export const setTotalUsersCountAC = (totalUsersCount) => {
+    return {
+        type: SET_TOTAL_USER_COUNT,
+        totalUsersCount
     }
 }
 

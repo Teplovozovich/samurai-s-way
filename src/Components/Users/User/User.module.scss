@@ -2,14 +2,18 @@
 
 .user {
     display: flex;
-    flex-direction: column;
-    height: 80px;
+    flex-direction: row;
+    height: 100px;
     max-width: 600px;
-
     img {
         display: flex;
         justify-content: center;
         height: 35px;
         width: 35px;
     }
+}
+
+.user_items {
+    display: flex;
+    flex-direction: column;
 }

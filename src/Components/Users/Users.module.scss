@@ -10,4 +10,8 @@
     flex-grow: 1;
     border-radius: $main-border-radius;
     border: $line-color 1px solid;
+
+    .selectedPage {
+        color: $active-color;
+    }
 }
