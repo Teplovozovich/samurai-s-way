@@ -6,7 +6,7 @@ import styles from "./Profile.module.scss"
 const Profile = (props) => {
     return (
         <div className={styles.profile__wrapper}>
-            <ProfileInfo />
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer store={props.store} />
         </div>
     )
