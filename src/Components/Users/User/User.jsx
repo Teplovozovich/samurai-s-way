@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 const User = (props) => {
-    //console.log(props);
     return (
         <div className={styles.user}>
             <div className={styles.user_items}>

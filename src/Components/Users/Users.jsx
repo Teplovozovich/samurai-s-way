@@ -6,7 +6,6 @@ import axios from "axios";
 import React from "react";
 
 const Users = (props) => {
-    console.log(props);
     const follows = (id) => {
         props.follow(id);
     }
@@ -41,8 +40,9 @@ const Users = (props) => {
                         followed={data.followed}
                         name={data.name}
                         photos={data.photos}
-                        toggleFollowingInProgress={data.toggleFollowingInProgress}
-                        followingInProgress={data.followingInProgress}
+                        followingInProgress={props.followingInProgress}
+                        toggleFollowingInProgress={props.toggleFollowingInProgress}
+                        prodata={data}
                     />)
             }
         </div >
