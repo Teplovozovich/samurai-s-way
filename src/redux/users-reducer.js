@@ -72,8 +72,8 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 followingInProgress: action.isFetching
-                ? [...state.followingInProgress, action.userId]
-                : state.followingInProgress.filter(id => id != action.userId)
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
             }
         }
         default:
@@ -126,4 +126,17 @@ export const toggleFollowingInProgress = (isFetching, userId) => {
     }
 }
 
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true))
+
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false));
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
+}
 export default usersReducer;
