@@ -2,7 +2,6 @@ import User from "./User/User";
 import styles from "./Users.module.scss"
 // import DialogItem from "./DialogItem/DialogItem";
 // import Message from "./Message/Message";
-import axios from "axios";
 import React from "react";
 
 const Users = (props) => {
