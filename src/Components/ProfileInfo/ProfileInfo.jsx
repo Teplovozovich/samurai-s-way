@@ -13,7 +13,7 @@ const ProfileInfo = (props) => {
             <img className={styles.img} src="https://pic.rutubelist.ru/video/46/aa/46aaeeeed034cb74cef4bb100173d9df.jpg" />
             <div>
                 {/* <img src={props.profile.photos.large} alt="" /> */}
-                <ProfileStatus status={"g"}/>
+                <ProfileStatus status={props.status}/>
             </div>
         </div>
     )

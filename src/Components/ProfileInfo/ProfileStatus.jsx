@@ -9,12 +9,12 @@ class ProfileStatus extends React.Component {
         title: "abrakadara"
     }
 
-    activateEditMode() {
+    activateEditMode = () => {
         this.setState({
             editMode: true
         })
     }
-    deactivateEditMode() {
+    deactivateEditMode = () => {
         this.setState({
             editMode: false
         })
@@ -25,12 +25,12 @@ class ProfileStatus extends React.Component {
             <div className={styles.profile_status}>
                 {!this.state.editMode &&
                     <div>
-                        <span onDoubleClick={this.activateEditMode.bind(this)}>{this.props.status}</span>
+                        <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
                     </div>
                 }
                 {this.state.editMode &&
                     <div tabIndex={0}>
-                        <input onBlur={this.deactivateEditMode.bind(this)} value={this.props.status} />
+                        <input onBlur={this.deactivateEditMode} value={this.props.status} />
                     </div>
                 }
             </div>
