@@ -4,6 +4,7 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import styles from "./Profile.module.scss"
 
 const Profile = (props) => {
+    console.log(props.status);
     return (
         <div className={styles.profile__wrapper}>
             <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
