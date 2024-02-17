@@ -3,18 +3,16 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { maxLengthCreator, required } from "../../utils/validators/validators";
+import AddMessageForm from "./AddMessageForm/AddMessageForm";
+
 
 const Dialogs = (props) => {
     let state = props.dialogsPage;
 
-    let newMessageBody = state.newMessageBody;
-
-    let onSendMessageClick = () => {
-        props.sendMessage();
-    }
-    let onNewMessageChange = (event) => {
-        let body = event.target.value;
-        props.updateNewMessageBody(body);
+    let addNewMessage = (values) => {
+        console.log(values);
+        props.sendMessage(values.newMessageBody);
     }
 
     let DialogElement = state.dialogs.map(data =>
@@ -36,16 +34,10 @@ const Dialogs = (props) => {
             <div className={styles.messages}>
                 <div>{MessageElement}</div>
                 <div className={styles.input_area}>
-                    <textarea
-                        value={newMessageBody}
-                        onChange={onNewMessageChange}
-                        placeholder="Message..."
-                    ></textarea>
-                    <button onClick={onSendMessageClick}>send</button>
+                    <AddMessageForm onSubmit={addNewMessage} />
                 </div>
             </div>
         </div>
     )
 }
-
 export default Dialogs;
