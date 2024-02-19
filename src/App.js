@@ -1,7 +1,7 @@
 import './App.css';
 import Header from './Components/Header/Header';
 import NavPanel from './Components/NavPanel/NavPanel';
-import ProfileContainer from './Components/Profile/ProfileContainer';
+import ProfileContainer, { withRouter } from './Components/Profile/ProfileContainer';
 import { Routes, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
@@ -10,30 +10,54 @@ import DialogsContainer from './Components/Dialogs/DialogsContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
+import { connect } from 'react-redux';
+import { initializeApp, logout } from "./redux/app-reducer";
+import { Component } from 'react';
+import { compose } from 'redux';
+import Preloader from './Components/Common/Preloader/Preloader';
 
-function App(props) {
-  return (
-    <div>
-      <HeaderContainer />
-      <div className="app__wrapper">
-        <div className="maim__wrapper">
-          <NavPanel />
-          <Routes>
-            <Route path="/news" element={<News />} />
-            <Route path="/profile" element={<ProfileContainer />}>
-              <Route path=":userId"
-                element={<ProfileContainer />} />
-            </Route>
-            <Route path="/dialogs/*" element={<DialogsContainer />} />
-            <Route path="/music" element={<Music />} />
-            <Route path="/users" element={<UsersContainer />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
+
+class App extends Component {
+  componentDidMount() {
+    this.props.initializeApp()
+  }
+
+  render() {
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
+
+    return (
+      
+      <div>
+        <HeaderContainer />
+
+        <div className="app__wrapper">
+          <div className="maim__wrapper">
+            <NavPanel />
+            <Routes>
+              <Route path="/news" element={<News />} />
+              <Route path="/profile" element={<ProfileContainer />}>
+                <Route path=":userId"
+                  element={<ProfileContainer />} />
+              </Route>
+              <Route path="/dialogs/*" element={<DialogsContainer />} />
+              <Route path="/music" element={<Music />} />
+              <Route path="/users" element={<UsersContainer />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+})
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { initializeApp }))(App);
