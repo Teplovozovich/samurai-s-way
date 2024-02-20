@@ -1,6 +1,6 @@
 import styles from "./ProfileInfo.module.scss"
 import Preloader from "./../Common/Preloader/Preloader"
-import ProfileStatus from "./ProfileStatus"
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 
 
 const ProfileInfo = (props) => {
@@ -12,7 +12,7 @@ const ProfileInfo = (props) => {
             <img className={styles.img} src="https://pic.rutubelist.ru/video/46/aa/46aaeeeed034cb74cef4bb100173d9df.jpg" />
             <div>
                 {/* <img src={props.profile.photos.large} alt="" /> */}
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
         </div>
     )

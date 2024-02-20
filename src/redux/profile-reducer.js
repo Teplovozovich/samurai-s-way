@@ -55,7 +55,6 @@ export const setUserProfile = (profile) => {
     }
 }
 export const setStatusProfile = (status) => {
-    console.log(status)
     return {
         type: SET_STATUS_PROFILE,
         status
