@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './Components/Header/Header';
 import NavPanel from './Components/NavPanel/NavPanel';
 import ProfileContainer, { withRouter } from './Components/Profile/ProfileContainer';
 import { Routes, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -11,7 +10,7 @@ import UsersContainer from './Components/Users/UsersContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
 import { connect } from 'react-redux';
-import { initializeApp, logout } from "./redux/app-reducer";
+import { initializeApp } from "./redux/app-reducer";
 import { Component } from 'react';
 import { compose } from 'redux';
 import Preloader from './Components/Common/Preloader/Preloader';
@@ -28,10 +27,8 @@ class App extends Component {
     }
 
     return (
-      
       <div>
         <HeaderContainer />
-
         <div className="app__wrapper">
           <div className="maim__wrapper">
             <NavPanel />

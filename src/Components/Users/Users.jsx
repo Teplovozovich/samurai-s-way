@@ -1,10 +1,11 @@
+import Paginator from "../Common/Paginator/Paginator";
 import User from "./User/User";
 import styles from "./Users.module.scss"
 // import DialogItem from "./DialogItem/DialogItem";
 // import Message from "./Message/Message";
 import React from "react";
 
-const Users = (props) => {
+const Users = ({ users, totalUsersCount, pageSize, currentPage, onPageChanges, ...props }) => {
     const follows = (id) => {
         props.follow(id);
     }
@@ -20,18 +21,13 @@ const Users = (props) => {
     }
     return (
         <div className={styles.users}>
-            <div>
-                {pages.map(data => {
-                    return (
-                        <span
-                            className={props.currentPage === data && styles.selectedPage}
-                            onClick={(e) => { props.onPageChanges(data) }}>
-                            {data}
-                        </span>)
-                })}
-            </div>
+            <Paginator
+                pageSize={pageSize}
+                totalUsersCount={totalUsersCount}
+                onPageChanges={onPageChanges}
+                currentPage={currentPage} />
             {
-                props.users.map(data =>
+                users.map(data =>
                     <User id={data.id}
                         follow={follows}
                         unfollow={unfollows}
@@ -40,7 +36,6 @@ const Users = (props) => {
                         name={data.name}
                         photos={data.photos}
                         followingInProgress={props.followingInProgress}
-                        toggleFollowingInProgress={props.toggleFollowingInProgress}
                         prodata={data}
                     />)
             }
