@@ -1,22 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 import Users from "./Users";
-import { requestUsers, follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow, toggleFollowingInProgress } from "../../redux/users-reducer";
+import { requestUsers, follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow, toggleFollowingProgress } from "../../redux/users-reducer";
 import Preloader from "../Common/Preloader/Preloader";
+import { usersAPI } from "./../../api/api"
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from "../../redux/users-selectors";
 
 
 class UsersContainer extends React.Component {
+
     componentDidMount() {
-        const {currentPage, pageSize} = this.props;
-        this.props.getUsers(currentPage, pageSize);
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
     }
 
-    onPageChanged = (pageNumber) => {
-        const {pageSize} = this.props;
-        this.props.getUsers(pageNumber, pageSize);
+    onPageChanges = (pageNumber) => {
+        this.props.requestUsers(pageNumber, this.props.pageSize)
+        this.props.setCurrentPage(pageNumber)
     }
 
     render() {
@@ -37,7 +38,7 @@ class UsersContainer extends React.Component {
                     users={this.props.users}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
-                    toggleFollowingInProgress={this.props.toggleFollowingInProgress}
+                    toggleFollowingProgress={this.props.toggleFollowingProgress}
                     followingInProgress={this.props.followingInProgress}
                 />
             </>
@@ -67,7 +68,7 @@ export default compose(
         setCurrentPage,
         setTotalUsersCount,
         toggleIsFetching,
-        toggleFollowingInProgress,
+        toggleFollowingProgress,
         requestUsers
     })
 )(UsersContainer)

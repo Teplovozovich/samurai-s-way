@@ -20,18 +20,16 @@ let initialState = {
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case FOLLOW: {
+        case FOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.id, "id", { followed: true })
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: true} )
             }
-        }
-        case UNFOLLOW: {
+        case UNFOLLOW:
             return {
                 ...state,
-                users: updateObjectInArray(state.users, action.id, "id", { followed: false })
+                users: updateObjectInArray(state.users, action.userId, "id", {followed: false} )
             }
-        }
         case SET_USERS: {
             return {
                 ...state,
@@ -106,7 +104,7 @@ export const toggleIsFetching = (isFetching) => {
         isFetching
     }
 }
-export const toggleFollowingInProgress = (isFetching, userId) => {
+export const toggleFollowingProgress = (isFetching, userId) => {
     return {
         type: TOGGLE_IS_FOLLOWING_PROGRESS,
         isFetching,
@@ -127,13 +125,13 @@ export const requestUsers = (page, pageSize) => {
 }
 
 const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
-    dispatch(toggleFollowingInProgress(true, userId));
+    dispatch(toggleFollowingProgress(true, userId));
     let response = await apiMethod(userId)
 
     if (response.data.resultCode === 0) {
         dispatch(actionCreator(userId))
     }
-    dispatch(toggleFollowingInProgress(false, userId));
+    dispatch(toggleFollowingProgress(false, userId));
 }
 
 export const follow = (userId) => {
