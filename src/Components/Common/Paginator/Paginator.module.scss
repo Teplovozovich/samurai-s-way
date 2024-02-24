@@ -1,5 +1,13 @@
 @import '/src/scss/main.module.scss';
 
+.paginator{
+    display: flex;
+}
+
+.page_number {
+    padding: 0 5px 0 5px;
+}
+
  .selectedPage {
     color: $active-color;
 }

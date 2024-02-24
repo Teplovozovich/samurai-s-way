@@ -6,16 +6,11 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux'
 import { Routes, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import SamuraiJsApp from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router>
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>
-  </Router>
+  <SamuraiJsApp/>
 );
 
 
