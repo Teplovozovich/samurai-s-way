@@ -1,6 +1,6 @@
 import './App.css';
 import NavPanel from './Components/NavPanel/NavPanel';
-import { HashRouter, withRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Navigate, withRouter } from 'react-router-dom';
 import { Routes, BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import News from './Components/News/News';
 import Music from './Components/Music/Music';
@@ -35,7 +35,7 @@ class App extends Component {
           <div className="maim__wrapper">
             <NavPanel />
             <Routes>
-              <Route path="/news" element={<News />} />
+              <Route path="/" element={<Navigate to="/profile" />} />              <Route path="/news" element={<News />} />
               <Route path="/profile" element={<ProfileContainer />}>
                 <Route path=":userId"
                   element={<ProfileContainer />} />
@@ -45,6 +45,7 @@ class App extends Component {
               <Route path="/users" element={<UsersContainer />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/login" element={<Login />} />
+              <Route path="*" element={<div>404 not found</div>} />
             </Routes>
           </div>
         </div>
@@ -63,13 +64,13 @@ let AppContainer = compose(
 const SamuraiJsApp = (props) => {
   return (
     <Suspense fallback={<div>загруска</div>}>
-      <HashRouter>
+      <BrowserRouter>
         <React.StrictMode>
           <Provider store={store}>
             <AppContainer />
           </Provider>
         </React.StrictMode>
-      </HashRouter>
+      </BrowserRouter>
     </Suspense>
   )
 }
