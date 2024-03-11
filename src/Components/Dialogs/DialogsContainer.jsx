@@ -1,7 +1,7 @@
 import React from 'react';
 import DialogItem from "./DialogItem/DialogItem";
 import Dialogs from "./Dialogs";
-import { sendMessageCreator } from "../../redux/dialogs-reducer";
+import { sendMessageCreator } from "../../redux/dialogs-reducer.ts";
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';

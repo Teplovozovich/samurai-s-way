@@ -1,11 +1,12 @@
-import User from "../../Users/User/User";
 import styles from "./Paginator.module.scss"
-// import DialogItem from "./DialogItem/DialogItem";
-// import Message from "./Message/Message";
 import React, { useState } from "react";
 
-const Paginator = (props, { portionSize = 10 }) => {
-    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
+type Props = {
+    onPageChanges: number
+}
+
+const Paginator = ({ onPageChanges, currentPage, pageSize, totalUsersCount, portionSize = 10 }) => {
+    let pageCount = Math.ceil(totalUsersCount / pageSize)
 
     let portionCount = Math.ceil(pageCount / portionSize)
     let [portionNumber, setPortionNumber] = useState(1)
@@ -29,8 +30,8 @@ const Paginator = (props, { portionSize = 10 }) => {
                 .map(data => {
                     return (
                         <span
-                            className={`${styles.page_number} ${props.currentPage === data && styles.selectedPage}`}
-                            onClick={(e) => { props.onPageChanges(data) }}>
+                            className={`${styles.page_number} ${currentPage === data && styles.selectedPage}`}
+                            onClick={(e) => { onPageChanges(data) }}>
                             {data}
                         </span>)
                 })}
