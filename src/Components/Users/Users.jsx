@@ -1,9 +1,8 @@
-import Paginator from "../Common/Paginator/Paginator";
+import Paginator from "../Common/Paginator/Paginator.tsx";
 import User from "./User/User";
 import styles from "./Users.module.scss"
-// import DialogItem from "./DialogItem/DialogItem";
-// import Message from "./Message/Message";
 import React from "react";
+import cn from 'classnames'
 
 const Users = ({ users, totalUsersCount, pageSize, currentPage, onPageChanges, ...props }) => {
     const follows = (id) => {
