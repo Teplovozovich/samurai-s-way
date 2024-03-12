@@ -1,20 +1,26 @@
 import Paginator from "../Common/Paginator/Paginator.tsx";
-import User from "./User/User";
+import User from "./User/User.jsx";
 import styles from "./Users.module.scss"
 import React from "react";
 import cn from "classnames"
+import { UserType } from "../../types/types.ts";
 
-const Users = ({ users, totalUsersCount, pageSize, currentPage, onPageChanges, ...props }) => {
-    const follows = (id) => {
-        props.follow(id);
-    }
-    const unfollows = (id) => {
-        props.unfollow(id);
-    }
+type PropsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanges: (pageNumber: number) => void
+    users: Array<UserType>
+    followingInProgress: Array<number>
+    follow: () => void
+    unfollow: () => void
+}
 
-    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
+let Users: React.FC<PropsType> = ({ users, totalUsersCount, pageSize, currentPage, onPageChanges,
+    ...props }) => {
+    let pageCount: number = Math.ceil(totalUsersCount / pageSize)
 
-    let pages = [];
+    let pages: number[] = [];
     for (let i = 1; i <= pageCount; i++) {
         pages.push(i);
     }
@@ -24,12 +30,12 @@ const Users = ({ users, totalUsersCount, pageSize, currentPage, onPageChanges, .
                 pageSize={pageSize}
                 totalUsersCount={totalUsersCount}
                 onPageChanges={onPageChanges}
-                currentPage={currentPage} />
+                currentPage={currentPage} /  >
             {
                 users.map(data =>
                     <User id={data.id}
-                        follow={follows}
-                        unfollow={unfollows}
+                        follow={props.follow}
+                        unfollow={props.unfollow}
                         status={data.status}
                         followed={data.followed}
                         name={data.name}

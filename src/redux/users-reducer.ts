@@ -141,6 +141,7 @@ type ToggleFollowingProgress = {
     type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
     isFetching, userId: number
 }
+
 export const toggleFollowingProgress = (isFetching, userId: number): ToggleFollowingProgress => {
     return {
         type: TOGGLE_IS_FOLLOWING_PROGRESS,

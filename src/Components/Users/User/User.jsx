@@ -5,6 +5,12 @@ import { NavLink } from "react-router-dom";
 import { usersAPI } from "../../../api/api";
 
 const User = (props) => {
+    const follows = (id) => {
+        props.follow(id);
+    }
+    const unfollows = (id) => {
+        props.unfollow(id);
+    }
     return (
         <div className={styles.user}>
             <div className={styles.user_items}>
@@ -17,11 +23,11 @@ const User = (props) => {
                 {props.followed ?
                     <button disabled={props.followingInProgress.some(id => id === props.id)}
                         onClick={() => {
-                            props.unfollow(props.id)
+                            unfollows(props.id)
                         }}>unfollowe</button> :
                     <button disabled={props.followingInProgress.some(id => id === props.id)}
                         onClick={() => {
-                            props.follow(props.id)
+                            follows(props.id)
                         }}>follow</button>
                 }
             </div>

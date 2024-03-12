@@ -1,15 +1,15 @@
 import styles from "./Paginator.module.scss"
 import React, { useState } from "react";
 
-type Props = {
+type PropsType = {
     onPageChanges: (pageNumber: number) => void
     currentPage: number
     pageSize: number
     totalUsersCount: number
-    portionSize: number
+    portionSize?: number
 }
 
-const Paginator: React.FC<Props> = ({ onPageChanges,
+const Paginator: React.FC<PropsType> = ({ onPageChanges,
     currentPage,
     pageSize,
     totalUsersCount,
