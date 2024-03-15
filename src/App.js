@@ -7,13 +7,13 @@ import Music from './Components/Music/Music';
 import Settings from './Components/Settings/Settings';
 import UsersContainer from './Components/Users/UsersContainer.tsx';
 import HeaderContainer from './Components/Header/HeaderContainer';
-import Login from './Components/Login/Login';
+import Login from './Components/Login/Login.tsx';
 import { Provider, connect } from 'react-redux';
 import { initializeApp } from "./redux/app-reducer.ts";
 import React, { Component, Suspense } from 'react';
 import { compose } from 'redux';
 import Preloader from './Components/Common/Preloader/Preloader';
-import store from './redux/redux-store';
+import store from './redux/redux-store.ts';
 
 const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileContainer'));
@@ -50,7 +50,7 @@ class App extends Component {
               </Route>
               <Route path="/dialogs/*" element={<DialogsContainer />} />
               <Route path="/music" element={<Music />} />
-              <Route path="/users" element={<UsersContainer />} />
+              <Route path="/users" element={<UsersContainer pageTitle={"ttiittllee"}/>} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<div>404 not found</div>} />

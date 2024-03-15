@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form";
-import { authAPI, securityAPI } from "../api/api";
+import {  ResultCodeEnum, ResultCodeForCaptchaEnum, authAPI, securityAPI } from "../api/api.ts";
 
 const SET_USER_DATA = "auth/SET_USER_DATA"
 const GET_CAPTCHA_URL_SUCCESS = "auth/GET_CAPTCHA_URL_SUCCESS"
@@ -76,25 +76,25 @@ export const getCaptchaUrlSuccess = (captchaUrl: string): GetCaptchaUrlSuccessTy
 }
 
 export const getAuthUserData = () => async (dispatch: any) => {
-    let response = await authAPI.me()
+    let meData = await authAPI.me()
 
-    if (response.data.resultCode === 0) {
-        let { id, email, login } = response.data.data
+    if (meData.resultCode === 0) {
+        let { id, email, login } = meData.data
         dispatch(setAuthUserData(id, email, login, true))
     }
 
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: any) => async (dispatch : any) => {
-    let response = await authAPI.login(email, password, rememberMe, captcha)
-    if (response.data.resultCode === 0) {
+    let data = await authAPI.login(email, password, rememberMe, captcha)
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(getAuthUserData())
     } else {
-        if (response.data.resultCode === 10) {
+        if (data.resultCode === ResultCodeForCaptchaEnum.CaptchaIsRequired) {
             dispatch(getCaptchaUrl())
         }
-        console.log(response.data.messages);
-        let message = response.data.messages.length >= 0 ? response.data.messages[0] : "some kaka"
+        console.log(data.messages);
+        let message = data.messages.length >= 0 ? data.messages[0] : "some kaka"
         dispatch(stopSubmit("login", { _error: message }))
     }
 }
@@ -108,7 +108,7 @@ export const getCaptchaUrl = () => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     let response = await authAPI.logout()
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === ResultCodeEnum.Success) {
         dispatch(setAuthUserData(null, null, null, false))
     }
 }

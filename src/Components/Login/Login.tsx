@@ -1,10 +1,11 @@
 import { Field, reduxForm } from 'redux-form';
-import { LoginInput, createField } from '../Common/FormsControls/FormsControls';
-import { required } from '../../utils/validators/validators';
+import { LoginInput, createField } from '../Common/FormsControls/FormsControls.tsx';
+import { required } from '../../utils/validators/validators.js';
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth-reducer.ts';
 import { Navigate } from 'react-router-dom';
 import style from './../Common/FormsControls/FormsControls.module.scss';
+import { AppStateType } from '../../redux/redux-store.ts';
 
 const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
     return (
@@ -27,6 +28,11 @@ const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
 
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
+type MapStatePropsType = {
+    captchaUrl: string
+    isAuth: boolean
+}
+
 const Login = (props) => {
     const onSubmit = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
@@ -41,7 +47,7 @@ const Login = (props) => {
         <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
     </div>
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth,
     captchaUrl: state.auth.captchaUrl
 })

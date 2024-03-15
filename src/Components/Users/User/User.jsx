@@ -2,7 +2,7 @@ import React from "react";
 import plugAvatar from "./../../../assets/img/png/plug-avatar.jpg"
 import styles from "./User.module.scss"
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../../api/api";
+import { usersAPI } from "../../../api/api.ts";
 
 const User = (props) => {
     const follows = (id) => {

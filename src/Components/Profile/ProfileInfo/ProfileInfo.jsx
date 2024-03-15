@@ -1,6 +1,6 @@
 import styles from "./ProfileInfo.module.scss"
 import Preloader from "../../Common/Preloader/Preloader"
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
+import ProfileStatus from "./ProfileStatus.tsx"
 import userPhoto from "../../../assets/img/png/plug-avatar.jpg"
 import { useState } from "react"
 import ProfileDataFormReduxForm from "./ProfileDataForm"
@@ -42,7 +42,7 @@ const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, savePr
                     : <ProfileData goToEditMode={() => { setEditMode(true) }} profile={profile} isOwner={isOwner} />
                 }
 
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+                <ProfileStatus status={status} updateStatus={updateStatus} />
             </div>
         </div>
     )
